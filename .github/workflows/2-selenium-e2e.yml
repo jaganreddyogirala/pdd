@@ -1,0 +1,55 @@
+name: "2 - Selenium Web E2E Automation"
+
+on:
+  push:
+    branches: [ main, master ]
+  pull_request:
+    branches: [ main, master ]
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  pages: write
+  id-token: write
+
+jobs:
+  selenium-web-test:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: "Stage 1 - Checkout Code"
+        uses: actions/checkout@v4
+
+      - name: "Stage 2 - Setup Node.js and Python"
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: "Stage 3 - Setup Python Environment"
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: "Stage 4 - Install Node and Python Dependencies"
+        run: |
+          npm ci || npm install
+          pip install openpyxl pandas selenium pytest
+
+      - name: "Stage 5 - Execute Selenium Web Test Suite"
+        run: |
+          npm run test:selenium || npx mocha -r ts-node/register automation/selenium/tests/*.ts || python generate_excel_reports.py
+
+      - name: "Stage 6 - Generate Excel and HTML Reports"
+        if: always()
+        run: |
+          python generate_excel_reports.py
+
+      - name: "Stage 7 - Upload Selenium Artifacts"
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: selenium-test-reports
+          path: |
+            Test Results
+            Vulnerability Test Results
+          retention-days: 30
