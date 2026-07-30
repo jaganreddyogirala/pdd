@@ -130,8 +130,8 @@ jobs:
         with:
           name: appium-and-selenium-test-reports
           path: |
-            Test Results/
-            Vulnerability Test Results/
+            "Test Results/"
+            "Vulnerability Test Results/"
           retention-days: 30
 
       # Stage 19: Publish Reports to GitHub Pages
@@ -142,6 +142,7 @@ jobs:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: "./Test Results"
           destination_dir: reports/latest
+          force_orphan: true
 
       # Stage 20: Generate GitHub Summary
       - name: "Stage 20 - Publish Execution Metrics to GitHub Action Summary"

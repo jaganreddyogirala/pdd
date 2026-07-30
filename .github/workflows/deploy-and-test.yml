@@ -61,8 +61,8 @@ jobs:
         with:
           name: selenium-and-security-reports
           path: |
-            Test Results/
-            Vulnerability Test Results/
+            "Test Results/"
+            "Vulnerability Test Results/"
           retention-days: 30
 
       - name: "Stage 8 - Publish GitHub Action Execution Summary"

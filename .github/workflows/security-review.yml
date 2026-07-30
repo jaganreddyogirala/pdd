@@ -13,8 +13,8 @@ on:
         default: 'full'
         type: choice
         options:
-        - full
-        - quick
+          - full
+          - quick
 
 jobs:
   security-review:
@@ -38,5 +38,5 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: security-review-artifacts
-          path: Vulnerability Test Results/
+          path: "Vulnerability Test Results/"
           retention-days: 30
