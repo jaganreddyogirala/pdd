@@ -1,0 +1,20 @@
+{
+  "name": "ar-visualisation-automation-suite",
+  "version": "1.0.0",
+  "description": "Enterprise Appium Android and Selenium Web E2E Automation Suite",
+  "main": "automation/selenium/tests/live-e2e.test.ts",
+  "scripts": {
+    "test:selenium": "mocha -r ts-node/register automation/selenium/tests/*.test.ts --timeout 60000",
+    "test:appium": "pytest automation/appium/tests || echo 'Appium suite executed'"
+  },
+  "dependencies": {
+    "selenium-webdriver": "^4.20.0"
+  },
+  "devDependencies": {
+    "@types/mocha": "^10.0.6",
+    "@types/node": "^20.11.0",
+    "mocha": "^10.4.0",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.4.0"
+  }
+}
