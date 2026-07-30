@@ -10,14 +10,7 @@ import { QRCodeSVG } from 'qrcode.react';
 
 const HeroCanvas = dynamic(
   () => import('@/components/three/HeroCanvas').then((m) => m.HeroCanvas),
-  {
-    ssr: false,
-    loading: () => (
-      <div className="w-full h-full flex items-center justify-center text-slate-500 text-xs">
-        Loading 3D Viewport...
-      </div>
-    ),
-  }
+  { ssr: false }
 );
 
 export default function ProductDetailPage({ params }: { params: Promise<{ id: string }> }) {
