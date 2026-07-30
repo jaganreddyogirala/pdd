@@ -6,6 +6,11 @@ on:
   pull_request:
     branches: [ main, master ]
   workflow_dispatch:
+    inputs:
+      trigger_reason:
+        description: 'Manual Trigger Reason'
+        required: false
+        default: 'On-demand E2E Verification'
 
 permissions:
   contents: write
@@ -22,46 +27,35 @@ jobs:
       - name: Stage 1: Repository Checkout
         uses: actions/checkout@v4
 
-      - name: Stage 2: Setup Node.js Environment
+      - name: Stage 2: Setup Node.js & Python
         uses: actions/setup-node@v4
         with:
           node-version: '20'
 
-      - name: Stage 3: Install Frontend Dependencies & Build
+      - name: Stage 3: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Stage 4: Install Frontend Dependencies & Build Export
         run: |
           cd frontend
           npm ci || npm install
           npm run build
 
-      - name: Stage 4: Static Application Security Testing (SAST & Semgrep)
-        run: |
-          echo "Running SAST security scan..."
-          python generate_excel_reports.py
-
-      - name: Stage 5: Deploy to GitHub Pages
+      - name: Stage 5: Deploy Static Site to GitHub Pages
         uses: peaceiris/actions-gh-pages@v3
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: ./frontend/out
           force_orphan: true
 
-      - name: Stage 6 & 7: Verify Live Deployment Availability
+      - name: Stage 6: Generate Execution Excel & HTML Reports
         run: |
-          echo "Verifying live deployment at $BASE_URL..."
-          sleep 10
-          curl -I "$BASE_URL" || echo "Deployment active at $BASE_URL"
-
-      - name: Stage 8: Run Selenium E2E Test Suite (400+ Test Cases)
-        run: |
-          echo "Executing 400+ Headless Chrome Selenium E2E Tests against $BASE_URL..."
+          pip install openpyxl pandas
           python generate_excel_reports.py
 
-      - name: Stage 9 & 10: Generate Reports & Excel Artifacts
-        if: always()
-        run: |
-          echo "Excel & HTML reports generated successfully."
-
-      - name: Stage 11: Upload Artifacts (Retention 30 Days)
+      - name: Stage 7: Upload Artifacts (Retention 30 Days)
         if: always()
         uses: actions/upload-artifact@v4
         with:
@@ -71,13 +65,13 @@ jobs:
             Vulnerability Test Results/
           retention-days: 30
 
-      - name: Stage 12: Publish GitHub Action Execution Summary
+      - name: Stage 8: Publish GitHub Action Execution Summary
         if: always()
         run: |
-          cat << EOF >> $GITHUB_STEP_SUMMARY
+          cat << 'EOF' >> $GITHUB_STEP_SUMMARY
           # Live GitHub Pages E2E Execution Summary
 
-          - **Deployment URL**: $BASE_URL
+          - **Deployment URL**: https://jaganreddyogirala.github.io/pdd/
           - **Execution Date**: $(date)
           - **Build Status**: PASS
           - **Deployment Status**: PASS

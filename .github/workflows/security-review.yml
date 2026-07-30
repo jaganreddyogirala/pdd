@@ -6,6 +6,15 @@ on:
   pull_request:
     branches: [ main, master ]
   workflow_dispatch:
+    inputs:
+      scan_type:
+        description: 'Scan Depth'
+        required: true
+        default: 'full'
+        type: choice
+        options:
+        - full
+        - quick
 
 jobs:
   security-review:
