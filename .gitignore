@@ -1,0 +1,9 @@
+# Dependencies & Virtual Environments
+.run_venv/
+node_modules/
+.next/
+*.pyc
+__pycache__/
+*.zip
+PortableGit.exe
+MinGit.zip

@@ -1,0 +1,5 @@
+Django
+djangorestframework
+pillow
+django-cors-headers
+requests

@@ -1,0 +1,27 @@
+config:
+  target: "http://localhost:8000/api"
+  phases:
+    - duration: 60
+      arrivalRate: 20
+      rampTo: 100
+      name: "Ramp up to 100 Virtual Users"
+    - duration: 60
+      arrivalRate: 100
+      name: "Sustained Baseline Load (100 VUs / 1 min)"
+  defaults:
+    headers:
+      Content-Type: "application/json"
+
+scenarios:
+  - name: "AR Spatial Session & Catalog Endpoint Load Test"
+    flow:
+      - get:
+          url: "/products/"
+      - post:
+          url: "/session/start/"
+          json:
+            host_app_id: "artillery_user"
+            product_id: "chair_exec_001"
+            product_name: "Ergonomic Office Chair"
+            model_url: "https://raw.githubusercontent.com/KhronosGroup/glTF-Sample-Assets/main/Models/SheenChair/glTF-Binary/SheenChair.glb"
+            scale: 1.0

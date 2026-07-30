@@ -1,0 +1,63 @@
+Watching for file changes with StatReloader
+Not Found: /
+[20/Mar/2026 05:11:02] "GET / HTTP/1.1" 404 2475
+Not Found: /favicon.ico
+[20/Mar/2026 05:11:02] "GET /favicon.ico HTTP/1.1" 404 2526
+/Users/admin/Desktop/ar_visualisation/ar_backend/ar_backend/urls.py changed, reloading.
+Performing system checks...
+
+System check identified no issues (0 silenced).
+March 20, 2026 - 05:09:04
+Django version 6.0.3, using settings 'ar_backend.settings'
+Starting development server at http://0.0.0.0:8000/
+Quit the server with CONTROL-C.
+
+WARNING: This is a development server. Do not use it in a production setting. Use a production WSGI or ASGI server instead.
+For more information on production servers see: https://docs.djangoproject.com/en/6.0/howto/deployment/
+Watching for file changes with StatReloader
+/Users/admin/Desktop/ar_visualisation/ar_backend/ar_backend/urls.py changed, reloading.
+Performing system checks...
+
+System check identified no issues (0 silenced).
+March 20, 2026 - 05:12:40
+Django version 6.0.3, using settings 'ar_backend.settings'
+Starting development server at http://0.0.0.0:8000/
+Quit the server with CONTROL-C.
+
+WARNING: This is a development server. Do not use it in a production setting. Use a production WSGI or ASGI server instead.
+For more information on production servers see: https://docs.djangoproject.com/en/6.0/howto/deployment/
+Watching for file changes with StatReloader
+[20/Mar/2026 05:13:16] "GET / HTTP/1.1" 200 31
+[20/Mar/2026 05:17:33] "GET / HTTP/1.1" 200 31
+[20/Mar/2026 05:17:37] "GET / HTTP/1.1" 200 31
+[20/Mar/2026 05:17:37] "GET / HTTP/1.1" 200 31
+[20/Mar/2026 05:17:38] "GET / HTTP/1.1" 200 31
+[20/Mar/2026 05:17:38] "GET / HTTP/1.1" 200 31
+[20/Mar/2026 05:17:38] "GET / HTTP/1.1" 200 31
+[20/Mar/2026 05:17:39] "GET / HTTP/1.1" 200 31
+[20/Mar/2026 05:17:46] "GET / HTTP/1.1" 200 31
+/Users/admin/Desktop/ar_visualisation/ar_backend/ar_backend/urls.py changed, reloading.
+Performing system checks...
+
+System check identified no issues (0 silenced).
+March 20, 2026 - 05:12:50
+Django version 6.0.3, using settings 'ar_backend.settings'
+Starting development server at http://0.0.0.0:8000/
+Quit the server with CONTROL-C.
+
+WARNING: This is a development server. Do not use it in a production setting. Use a production WSGI or ASGI server instead.
+For more information on production servers see: https://docs.djangoproject.com/en/6.0/howto/deployment/
+Watching for file changes with StatReloader
+/Users/admin/Desktop/ar_visualisation/ar_backend/ar_backend/urls.py changed, reloading.
+Performing system checks...
+
+System check identified no issues (0 silenced).
+March 20, 2026 - 05:17:54
+Django version 6.0.3, using settings 'ar_backend.settings'
+Starting development server at http://0.0.0.0:8000/
+Quit the server with CONTROL-C.
+
+WARNING: This is a development server. Do not use it in a production setting. Use a production WSGI or ASGI server instead.
+For more information on production servers see: https://docs.djangoproject.com/en/6.0/howto/deployment/
+Watching for file changes with StatReloader
+[20/Mar/2026 05:17:58] "GET / HTTP/1.1" 200 27
