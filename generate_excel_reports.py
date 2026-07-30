@@ -3,7 +3,7 @@ import openpyxl
 from openpyxl.styles import Font, PatternFill, Alignment, Border, Side
 from openpyxl.utils import get_column_letter
 
-base_dir = r"c:\Users\nannu\Downloads\ar_visualisation 2\ar_visualisation"
+base_dir = os.path.dirname(os.path.abspath(__file__))
 os.chdir(base_dir)
 
 os.makedirs("Test Results/Excel", exist_ok=True)

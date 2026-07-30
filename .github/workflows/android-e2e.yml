@@ -130,8 +130,8 @@ jobs:
         with:
           name: appium-and-selenium-test-reports
           path: |
-            "Test Results/"
-            "Vulnerability Test Results/"
+            Test Results
+            Vulnerability Test Results
           retention-days: 30
 
       # Stage 19: Publish Reports to GitHub Pages
