@@ -1,4 +1,4 @@
-name: Live GitHub Pages E2E & Security CI/CD Pipeline
+name: "Live GitHub Pages E2E and Security CI/CD Pipeline"
 
 on:
   push:
@@ -24,38 +24,38 @@ jobs:
       BASE_URL: https://${{ github.repository_owner }}.github.io/${{ github.event.repository.name }}/
 
     steps:
-      - name: Stage 1: Repository Checkout
+      - name: "Stage 1 - Repository Checkout"
         uses: actions/checkout@v4
 
-      - name: Stage 2: Setup Node.js & Python
+      - name: "Stage 2 - Setup Node.js and Python"
         uses: actions/setup-node@v4
         with:
           node-version: '20'
 
-      - name: Stage 3: Setup Python
+      - name: "Stage 3 - Setup Python"
         uses: actions/setup-python@v5
         with:
           python-version: '3.11'
 
-      - name: Stage 4: Install Frontend Dependencies & Build Export
+      - name: "Stage 4 - Install Frontend Dependencies and Build Export"
         run: |
           cd frontend
           npm ci || npm install
           npm run build
 
-      - name: Stage 5: Deploy Static Site to GitHub Pages
+      - name: "Stage 5 - Deploy Static Site to GitHub Pages"
         uses: peaceiris/actions-gh-pages@v3
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: ./frontend/out
           force_orphan: true
 
-      - name: Stage 6: Generate Execution Excel & HTML Reports
+      - name: "Stage 6 - Generate Execution Excel and HTML Reports"
         run: |
           pip install openpyxl pandas
           python generate_excel_reports.py
 
-      - name: Stage 7: Upload Artifacts (Retention 30 Days)
+      - name: "Stage 7 - Upload Artifacts"
         if: always()
         uses: actions/upload-artifact@v4
         with:
@@ -65,7 +65,7 @@ jobs:
             Vulnerability Test Results/
           retention-days: 30
 
-      - name: Stage 8: Publish GitHub Action Execution Summary
+      - name: "Stage 8 - Publish GitHub Action Execution Summary"
         if: always()
         run: |
           cat << 'EOF' >> $GITHUB_STEP_SUMMARY

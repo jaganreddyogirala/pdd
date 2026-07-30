@@ -1,4 +1,4 @@
-name: Android Appium E2E Automation & CI/CD Pipeline
+name: "Android Appium E2E Automation and CI/CD Pipeline"
 
 on:
   push:
@@ -13,8 +13,8 @@ on:
         default: 'staging'
         type: choice
         options:
-        - staging
-        - production
+          - staging
+          - production
   schedule:
     - cron: '0 2 * * *'
 
@@ -28,31 +28,31 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Stage 1: Checkout Repository
+      - name: "Stage 1 - Checkout Repository"
         uses: actions/checkout@v4
 
-      - name: Stage 2: Setup Python
+      - name: "Stage 2 - Setup Python"
         uses: actions/setup-python@v5
         with:
           python-version: '3.11'
 
-      - name: Stage 3: Setup Java JDK
+      - name: "Stage 3 - Setup Java JDK"
         uses: actions/setup-java@v4
         with:
           distribution: 'zulu'
           java-version: '17'
 
-      - name: Stage 4: Install Dependencies & Run Test Suite
+      - name: "Stage 4 - Install Dependencies and Run Test Suite"
         run: |
           pip install openpyxl pandas
           python generate_excel_reports.py
 
-      - name: Stage 5: Build Debug APK Artifact
+      - name: "Stage 5 - Build Debug APK Artifact"
         run: |
           mkdir -p build/outputs/apk/debug
           echo "SIMULATED_ANDROID_DEBUG_APK" > build/outputs/apk/debug/app-debug.apk
 
-      - name: Stage 6: Prepare Execution Evidence Directories
+      - name: "Stage 6 - Prepare Execution Evidence Directories"
         run: |
           mkdir -p "Test Results/HTML" "Test Results/Summary" "Test Results/Logs" "Test Results/Screenshots"
           echo "<h1>Appium Android E2E Execution Report</h1><p>Status: PASSED (380/400 Passed)</p>" > "Test Results/HTML/execution-report.html"
@@ -68,7 +68,7 @@ jobs:
           - **Skipped**: 8 (2.0%)
           EOF
 
-      - name: Stage 7: Upload Artifacts
+      - name: "Stage 7 - Upload Artifacts"
         if: always()
         uses: actions/upload-artifact@v4
         with:
@@ -78,7 +78,7 @@ jobs:
             Vulnerability Test Results/
           retention-days: 30
 
-      - name: Stage 8: Publish Reports to GitHub Pages
+      - name: "Stage 8 - Publish Reports to GitHub Pages"
         if: always() && github.ref == 'refs/heads/main'
         uses: peaceiris/actions-gh-pages@v3
         with:
@@ -86,6 +86,6 @@ jobs:
           publish_dir: "./Test Results"
           destination_dir: reports/latest
 
-      - name: Stage 9: Publish GitHub Action Summary
+      - name: "Stage 9 - Publish GitHub Action Summary"
         if: always()
         run: cat "Test Results/Summary/summary.md" >> $GITHUB_STEP_SUMMARY
