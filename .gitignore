@@ -10,3 +10,8 @@ __pycache__/
 PortableGit.exe
 MinGit.zip
 
+# Artifact Downloads & Scratch Scripts
+artifacts_download/
+download_artifacts_and_populate_reports.py
+
+
