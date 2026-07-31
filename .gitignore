@@ -4,6 +4,9 @@ node_modules/
 .next/
 *.pyc
 __pycache__/
+.pytest_cache/
+.DS_Store
 *.zip
 PortableGit.exe
 MinGit.zip
+
